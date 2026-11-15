@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="fr-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Les projets de Roméo St-Cyr</title>
+<meta name="description" content="RomBot2, RomBot, RjSky et NIDcornifleur : quatre projets conçus et construits par Roméo St-Cyr.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+<style>
+/* Idée de mise en page : une fiche d'atelier. Colonne de lecture étroite,
+   titres condensés comme sur une plaque signalétique, filet jaune de sécurité
+   pour marquer les titres, fiches techniques en tableau à deux colonnes. */
+:root {
+  --fond: #f3f4f1;
+  --surface: #ffffff;
+  --encre: #1b2321;
+  --encre-douce: #55605c;
+  --filet: #d5d9d4;
+  --jaune: #e2a900;
+  --lien: #1d5c4b;
+  --titre: "Barlow Condensed", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  --texte: "Source Sans 3", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --fond: #151a19;
+    --surface: #1e2523;
+    --encre: #e9ece8;
+    --encre-douce: #a3aea9;
+    --filet: #343d3a;
+    --jaune: #f0bb1e;
+    --lien: #7fd0b6;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --fond: #151a19;
+  --surface: #1e2523;
+  --encre: #e9ece8;
+  --encre-douce: #a3aea9;
+  --filet: #343d3a;
+  --jaune: #f0bb1e;
+  --lien: #7fd0b6;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  margin: 0;
+  background: var(--fond);
+  color: var(--encre);
+  font-family: var(--texte);
+  font-size: 1.125rem;
+  line-height: 1.6;
+}
+img { max-width: 100%; height: auto; display: block; }
+a { color: var(--lien); text-underline-offset: 3px; }
+a:focus-visible, button:focus-visible { outline: 3px solid var(--jaune); outline-offset: 3px; }
+
+.cadre { max-width: 62rem; margin: 0 auto; padding: 0 1.25rem; }
+
+/* En-tête */
+.entete { border-bottom: 1px solid var(--filet); background: var(--surface); }
+.entete .cadre {
+  display: flex; flex-wrap: wrap; align-items: baseline;
+  justify-content: space-between; gap: 0.5rem 2rem;
+  padding-top: 1rem; padding-bottom: 1rem;
+}
+.marque {
+  font-family: var(--titre); font-weight: 700; font-size: 1.5rem;
+  letter-spacing: 0.02em; text-transform: uppercase;
+  color: var(--encre); text-decoration: none;
+}
+.menu { display: flex; flex-wrap: wrap; gap: 0.25rem 1.25rem; }
+.menu a {
+  font-family: var(--titre); font-weight: 600; font-size: 1.2rem;
+  letter-spacing: 0.03em; text-transform: uppercase;
+  color: var(--encre-douce); text-decoration: none;
+  padding: 0.15rem 0; border-bottom: 3px solid transparent;
+}
+.menu a:hover { color: var(--encre); }
+.menu a[aria-current="page"] { color: var(--encre); border-bottom-color: var(--jaune); }
+
+/* Titres */
+h1, h2, h3 { font-family: var(--titre); line-height: 1.1; text-wrap: balance; margin: 0; }
+h1 { font-size: clamp(2.4rem, 6vw, 3.6rem); font-weight: 700; text-transform: uppercase; letter-spacing: 0.01em; }
+h2 { font-size: 1.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.02em; margin-top: 2.5rem; }
+h2::before { content: ""; display: block; width: 3rem; height: 5px; background: var(--jaune); margin-bottom: 0.6rem; }
+.accroche { font-size: 1.3rem; color: var(--encre-douce); margin: 0.5rem 0 0; max-width: 40rem; }
+p, ul { max-width: 40rem; margin: 0.9rem 0 0; }
+ul { padding-left: 1.2rem; }
+li + li { margin-top: 0.25rem; }
+
+.vue { padding: 2.5rem 0 3.5rem; }
+
+/* Accueil : liste des projets */
+.projets { list-style: none; padding: 0; margin: 2.5rem 0 0; max-width: none; display: grid; gap: 2rem; }
+.projet {
+  display: grid; grid-template-columns: minmax(0, 17rem) minmax(0, 1fr);
+  gap: 1.5rem; align-items: start;
+  padding-top: 2rem; border-top: 1px solid var(--filet);
+}
+.projet img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 4px; }
+.projet h2 { margin-top: 0; }
+.projet h2::before { display: none; }
+.projet h2 a { color: var(--encre); text-decoration: none; }
+.projet h2 a:hover { text-decoration: underline; text-decoration-color: var(--jaune); text-decoration-thickness: 4px; }
+.projet .genre {
+  font-family: var(--titre); font-weight: 600; text-transform: uppercase;
+  letter-spacing: 0.06em; font-size: 1rem; color: var(--encre-douce); margin: 0 0 0.2rem;
+}
+.suite { font-weight: 600; }
+@media (max-width: 40rem) {
+  .projet { grid-template-columns: 1fr; }
+}
+
+/* Pages de projet */
+.photo { margin: 2rem 0 0; }
+.photo img { border-radius: 4px; max-height: 34rem; width: auto; }
+.photo figcaption { color: var(--encre-douce); font-size: 1rem; margin-top: 0.5rem; max-width: 40rem; }
+.paire { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: 1.5rem; align-items: start; }
+.paire .photo img { width: 100%; max-height: none; }
+
+.fiche { margin-top: 1rem; overflow-x: auto; }
+.fiche table { border-collapse: collapse; width: 100%; max-width: 44rem; background: var(--surface); }
+.fiche th, .fiche td { text-align: left; vertical-align: top; padding: 0.55rem 0.9rem; border-bottom: 1px solid var(--filet); }
+.fiche th {
+  font-family: var(--titre); font-weight: 600; font-size: 1.1rem;
+  text-transform: uppercase; letter-spacing: 0.04em;
+  color: var(--encre-douce); width: 13rem; border-left: 5px solid var(--jaune);
+}
+.devise {
+  font-family: var(--titre); font-weight: 600; font-size: 1.6rem;
+  margin-top: 1.5rem; padding-left: 1rem; border-left: 5px solid var(--jaune); max-width: 40rem;
+}
+.retour { margin-top: 3rem; font-weight: 600; }
+
+/* Pied de page */
+.pied { border-top: 1px solid var(--filet); background: var(--surface); color: var(--encre-douce); font-size: 1rem; }
+.pied .cadre { padding-top: 1.25rem; padding-bottom: 1.5rem; }
+.pied p { margin: 0; max-width: none; }
+</style>
+</head>
+<body>
+
+<header class="entete">
+  <div class="cadre">
+    <a class="marque" href="#accueil">Roméo St-Cyr · Projets</a>
+    <nav class="menu" aria-label="Projets">
+      <a href="#rb2">RomBot2</a>
+      <a href="#rombot">RomBot</a>
+      <a href="#rjsky">RjSky</a>
+      <a href="#nidcornifleur">NIDcornifleur</a>
+    </nav>
+  </div>
+</header>
+
+<main class="cadre">
+
+<!-- ===================== ACCUEIL ===================== -->
+<section class="vue" id="accueil">
+  <h1>Des machines faites maison</h1>
+  <p class="accroche">Quatre projets conçus et assemblés par Roméo St-Cyr, à Saint-Jean-sur-Richelieu : deux robots d'inspection, une station d'observation du ciel et un appareil pour visiter les nichoirs.</p>
+  <p>Chaque projet est né d'un besoin réel. La méthode reste la même : observer le problème, fabriquer une solution, l'essayer sur le terrain, corriger et documenter.</p>
+
+  <ul class="projets">
+    <li class="projet">
+      <a href="#rb2"><img src="img/rb2.jpg" alt="Le robot RomBot2 vu de côté, avec son LIDAR, ses deux antennes et sa caméra orientable"></a>
+      <div>
+        <p class="genre">Robot d'inspection téléopéré</p>
+        <h2><a href="#rb2">RomBot2 (RB2)</a></h2>
+        <p>Un robot à quatre roues qui explore les vides sanitaires et les espaces restreints à la place de l'opérateur, avec caméra orientable, LIDAR et conduite par page Web.</p>
+        <p class="suite"><a href="#rb2">Voir le RomBot2</a></p>
+      </div>
+    </li>
+    <li class="projet">
+      <a href="#rombot"><img src="img/rombot.jpg" alt="Le robot RomBot vu de face, avec sa caméra et sa rampe de DEL"></a>
+      <div>
+        <p class="genre">Premier robot d'inspection</p>
+        <h2><a href="#rombot">RomBot</a></h2>
+        <p>Le précurseur du RB2. En service depuis plusieurs années, il fonctionne toujours très bien.</p>
+        <p class="suite"><a href="#rombot">Voir le RomBot</a></p>
+      </div>
+    </li>
+    <li class="projet">
+      <a href="#rjsky"><img src="img/rjsky.jpg" alt="La station RjSky : un boîtier blanc surmonté d'un dôme transparent, fixé sur un poteau de clôture devant un champ"></a>
+      <div>
+        <p class="genre">Station d'observation du ciel</p>
+        <h2><a href="#rjsky">RjSky</a></h2>
+        <p>Une caméra plein ciel sous dôme, installée au bout du terrain, qui photographie la voûte céleste et suit le passage de la Station spatiale internationale.</p>
+        <p class="suite"><a href="#rjsky">Voir RjSky</a></p>
+      </div>
+    </li>
+    <li class="projet">
+      <a href="#nidcornifleur"><img src="img/nidcornifleur-terrain.jpg" alt="Inspection d'un nichoir fixé à un arbre, avec le NIDcornifleur tenu au bout de sa perche"></a>
+      <div>
+        <p class="genre">Inspection des nichoirs</p>
+        <h2><a href="#nidcornifleur">NIDcornifleur</a></h2>
+        <p>Une caméra au bout d'une perche télescopique qui regarde à l'intérieur d'un nichoir et l'identifie automatiquement par RFID. Un nichoir à la fois !</p>
+        <p class="suite"><a href="#nidcornifleur">Voir le NIDcornifleur</a></p>
+      </div>
+    </li>
+  </ul>
+</section>
+
+<!-- ===================== ROMBOT2 ===================== -->
+<section class="vue" id="rb2">
+  <h1>RomBot2 (RB2)</h1>
+  <p class="accroche">Un robot d'inspection téléopéré pour les endroits où il est pénible, ou impossible, de se déplacer à genoux.</p>
+
+  <figure class="photo">
+    <img src="img/rb2.jpg" alt="Le robot RomBot2 vu de côté : châssis d'aluminium à quatre roues, LIDAR et deux antennes à l'arrière, batterie au centre, caméra orientable à l'avant">
+    <figcaption>Le RB2 : LIDAR et antennes Wi-Fi à l'arrière, batterie au centre, caméra orientable et éclairage à l'avant.</figcaption>
+  </figure>
+
+  <h2>Pourquoi ce robot</h2>
+  <p>RomBot2 a été conçu pour inspecter les vides sanitaires, les dessous de bâtiments et d'autres espaces restreints sans que l'opérateur ait à y ramper sur de longues distances.</p>
+  <p>Il reprend l'esprit du premier <a href="#rombot">RomBot</a> et pousse le concept plus loin : motorisation améliorée, caméra orientable, LIDAR, centrale inertielle, Raspberry Pi 5, ESP32 et interface Web de conduite.</p>
+
+  <h2>Ce qu'il fait</h2>
+  <ul>
+    <li>Il transmet une image vidéo en direct.</li>
+    <li>Sa caméra pan-tilt regarde à gauche, à droite, en haut et en bas sans déplacer le robot.</li>
+    <li>Son LIDAR mesure les distances tout autour et dessine une carte des lieux.</li>
+    <li>Il enregistre la trace de son parcours et peut la refaire à l'envers pour revenir.</li>
+    <li>Il revient de lui-même vers son point de départ si le Wi-Fi est complètement perdu.</li>
+    <li>Un capteur de distance pointé vers le haut mesure le dégagement sous les tuyaux.</li>
+    <li>Un second capteur, pointé vers le sol, aide à repérer les fuites et les flaques d'eau.</li>
+    <li>Il prend des photos et des vidéos pour documenter l'inspection.</li>
+    <li>Il s'arrête immédiatement sur commande : le STOP et le jugement de l'opérateur passent avant tout.</li>
+  </ul>
+
+  <h2>Conduite</h2>
+  <p>Le RB2 se conduit à partir d'une page Web, sur un ordinateur ou un téléphone. La page principale regroupe la conduite, l'image de la caméra et les commandes de sécurité. Une seconde page affiche le LIDAR, la carte et les traces.</p>
+  <p>Sur le terrain, le robot crée son propre réseau Wi-Fi. La méthode est celle de la prudence : avancer par petites séquences, s'arrêter pour observer, ne jamais forcer contre un obstacle.</p>
+
+  <h2>Fiche technique</h2>
+  <div class="fiche">
+    <table>
+      <tr><th scope="row">Type</th><td>Robot mobile terrestre d'inspection, téléopéré</td></tr>
+      <tr><th scope="row">Ordinateur principal</th><td>Raspberry Pi 5, sous ROS 2</td></tr>
+      <tr><th scope="row">Contrôleur</th><td>ESP32 (moteurs, pan-tilt, encodeurs)</td></tr>
+      <tr><th scope="row">Vision</th><td>Caméra sur Raspberry Pi Zero 2 W, support pan-tilt</td></tr>
+      <tr><th scope="row">Capteurs</th><td>LIDAR LD19, centrale inertielle BNO055, encodeurs de roues, capteurs de distance ToF VL53L5CX V2 (vers le haut) et VL53L1X (vers le sol)</td></tr>
+      <tr><th scope="row">Motorisation</th><td>4 moteurs JGA25 avec encodeurs, 2 contrôleurs BTS7960</td></tr>
+      <tr><th scope="row">Châssis</th><td>Aluminium, environ 22 × 32 cm</td></tr>
+      <tr><th scope="row">Alimentation</th><td>Batterie DeWalt 20 V, 5 Ah</td></tr>
+      <tr><th scope="row">Communication</th><td>Wi-Fi, avec point d'accès embarqué</td></tr>
+    </table>
+  </div>
+
+  <h2>Philosophie</h2>
+  <p>RomBot2 n'est pas un jouet. C'est une machine construite pour répondre à un besoin concret. Pas de magie, pas de promesses exagérées : du travail, des essais, de la patience et du bon sens.</p>
+
+  <h2>État actuel</h2>
+  <p>Le projet est pratiquement terminé. La conduite, la caméra, le LIDAR, la cartographie, les traces et le retour automatique fonctionnent. Les capteurs de distance ajoutés récemment sont en service.</p>
+  <p>Prochain ajout prévu : une caméra thermique.</p>
+
+  <p class="retour"><a href="#accueil">Retour à tous les projets</a></p>
+</section>
+
+<!-- ===================== ROMBOT ===================== -->
+<section class="vue" id="rombot">
+  <h1>RomBot</h1>
+  <p class="accroche">Le premier robot d'inspection, toujours en service après plusieurs années.</p>
+
+  <figure class="photo">
+    <img src="img/rombot.jpg" alt="Le robot RomBot vu de face : caméra à grand angle sous une rampe de DEL, batterie DeWalt sur le dessus, afficheur de tension et quatre roues à crampons">
+    <figcaption>Le RomBot : caméra à grand angle, rampe de DEL, batterie DeWalt et afficheur de tension.</figcaption>
+  </figure>
+
+  <h2>Le précurseur</h2>
+  <p>RomBot est le robot qui a tout lancé. Construit pour aller voir dans les endroits bas et sombres à la place de son opérateur, il sert depuis plusieurs années et fonctionne toujours très bien.</p>
+  <p>C'est son usage sur le terrain qui a montré ce qu'un robot d'inspection devait offrir de plus, et qui a mené à la conception du <a href="#rb2">RomBot2</a>.</p>
+
+  <h2>Fiche technique</h2>
+  <div class="fiche">
+    <table>
+      <tr><th scope="row">Type</th><td>Robot mobile d'inspection à quatre roues</td></tr>
+      <tr><th scope="row">Ordinateur</th><td>Raspberry Pi 4</td></tr>
+      <tr><th scope="row">Vision</th><td>Caméra à grand angle, diffusée par RPi Cam Web Interface</td></tr>
+      <tr><th scope="row">Éclairage</th><td>Rampe de DEL à l'avant</td></tr>
+      <tr><th scope="row">Alimentation</th><td>Batterie DeWalt 20 V, avec afficheur de tension</td></tr>
+    </table>
+  </div>
+
+  <h2>Code source</h2>
+  <p>Le projet est public sur GitHub : <a href="https://github.com/NIDcornifleur/RomBot">github.com/NIDcornifleur/RomBot</a></p>
+
+  <p class="retour"><a href="#accueil">Retour à tous les projets</a></p>
+</section>
+
+<!-- ===================== RJSKY ===================== -->
+<section class="vue" id="rjsky">
+  <h1>RjSky</h1>
+  <p class="accroche">Une station personnelle d'observation du ciel, installée au bout du terrain.</p>
+
+  <figure class="photo">
+    <img src="img/rjsky.jpg" alt="La station RjSky : boîtier blanc étanche surmonté d'un dôme transparent abritant la caméra, antenne Wi-Fi sur le côté, le tout fixé par un bras articulé sur un poteau de clôture devant un champ">
+    <figcaption>RjSky sur son poteau : la caméra sous son dôme, l'antenne Wi-Fi et le câble d'alimentation.</figcaption>
+  </figure>
+
+  <h2>Ce qu'elle fait</h2>
+  <p>RjSky est une caméra plein ciel. Son objectif très grand angle, pointé vers le zénith, photographie toute la voûte céleste : étoiles, Lune, nuages et passages de satellites.</p>
+  <p>La station suit aussi la Station spatiale internationale et indique sa position dans le ciel.</p>
+
+  <h2>Installation</h2>
+  <p>La station est fixée sur un poteau, face à un champ, là où le ciel est le plus dégagé : les arbres empêchent une vue complète ailleurs sur le terrain. Elle est reliée à la maison par Wi-Fi.</p>
+  <p>Un système chauffant garde le dôme libre de rosée.</p>
+
+  <h2>Fiche technique</h2>
+  <div class="fiche">
+    <table>
+      <tr><th scope="row">Type</th><td>Caméra plein ciel (AllSky)</td></tr>
+      <tr><th scope="row">Ordinateur</th><td>Raspberry Pi 4 B, 4 Go</td></tr>
+      <tr><th scope="row">Caméra</th><td>Raspberry Pi HQ</td></tr>
+      <tr><th scope="row">Objectif</th><td>Très grand angle Arducam, 1,56 mm</td></tr>
+      <tr><th scope="row">Logiciel</th><td>AllSky</td></tr>
+      <tr><th scope="row">Protection</th><td>Boîtier étanche, dôme transparent, chauffage anti-rosée</td></tr>
+      <tr><th scope="row">Communication</th><td>Wi-Fi</td></tr>
+    </table>
+  </div>
+
+  <p class="retour"><a href="#accueil">Retour à tous les projets</a></p>
+</section>
+
+<!-- ===================== NIDCORNIFLEUR ===================== -->
+<section class="vue" id="nidcornifleur">
+  <h1>NIDcornifleur</h1>
+  <p class="accroche">Une caméra au bout d'une perche pour voir dans un nichoir sans l'ouvrir ni grimper.</p>
+  <p class="devise">Le NIDcornifleur : un nichoir à la fois !</p>
+
+  <div class="paire">
+    <figure class="photo">
+      <img src="img/nidcornifleur-terrain.jpg" alt="Une personne vue de dos, portant une veste au logo NIDcornifleur, tient l'appareil au bout de sa perche à l'entrée d'un nichoir fixé à un arbre">
+      <figcaption>Sur le terrain : l'appareil est présenté à l'entrée du nichoir, au bout de sa perche.</figcaption>
+    </figure>
+    <figure class="photo">
+      <img src="img/nidcornifleur-appareil.jpg" alt="Le NIDcornifleur posé sur une table : corps enveloppé d'une gaine, museau terminé par la caméra et ses lumières, et une pastille RFID verte">
+      <figcaption>L'appareil et une pastille RFID. Création : Roméo St-Cyr, 2018.</figcaption>
+    </figure>
+  </div>
+
+  <h2>À quoi il sert</h2>
+  <p>Le NIDcornifleur sert au recensement des nichées. Placé au bout d'une perche télescopique, il entre son museau dans l'ouverture du nichoir et filme l'intérieur. L'opérateur reste au sol, ce qui lui sauve du temps et lui évite les risques d'accident.</p>
+  <p>Il est utilisé chaque semaine au printemps, lors de la saison des nichées, par le Club d'ornithologie du Haut-Richelieu (COHR) ainsi que par quelques ornithologues amateurs. Le parcours du COHR compte plus de 200 nichoirs, notamment pour le suivi de l'Hirondelle bicolore.</p>
+
+  <h2>Comment il fonctionne</h2>
+  <ul>
+    <li>Chaque nichoir porte une pastille RFID sous son ouverture.</li>
+    <li>En approchant, l'appareil lit la pastille et reconnaît le nichoir.</li>
+    <li>Les lumières infrarouges s'allument et la caméra enregistre une vidéo d'environ 15 secondes.</li>
+    <li>Le nom du nichoir, la date et l'heure sont inscrits dans la vidéo.</li>
+    <li>L'appareil crée son propre réseau Wi-Fi : l'opérateur suit le tout sur son téléphone.</li>
+  </ul>
+  <p>Au retour, les photos et vidéos se consultent à l'ordinateur pour remplir le rapport de sortie.</p>
+
+  <h2>Fiche technique</h2>
+  <div class="fiche">
+    <table>
+      <tr><th scope="row">Ordinateur</th><td>Raspberry Pi Zero W</td></tr>
+      <tr><th scope="row">Caméra</th><td>Pi NoIR 8 MP, assez petite pour une ouverture de 1 po</td></tr>
+      <tr><th scope="row">Éclairage</th><td>Infrarouge</td></tr>
+      <tr><th scope="row">Identification</th><td>Lecteur RFID PN532</td></tr>
+      <tr><th scope="row">Horloge</th><td>RTC DS1307</td></tr>
+      <tr><th scope="row">Boîtier</th><td>Entièrement scellé sous gaine thermorétractable</td></tr>
+      <tr><th scope="row">Support</th><td>Perche télescopique</td></tr>
+    </table>
+  </div>
+
+  <h2>Une famille d'appareils</h2>
+  <p>Le premier exemplaire date de 2018. Environ dix appareils ont été construits depuis, en plusieurs variantes : l'éCOHRnifleur (deux exemplaires appartenant au COHR), l'écorNIDfleur et le MINIcornifleur, au museau allongé, conçu pour les nichoirs de troglodytes.</p>
+  <p>Une nouvelle génération est en préparation, avec une interface et un code entièrement refaits.</p>
+
+  <h2>Code source</h2>
+  <p>Les différentes versions sont sur GitHub : <a href="https://github.com/NIDcornifleur">github.com/NIDcornifleur</a></p>
+
+  <p class="retour"><a href="#accueil">Retour à tous les projets</a></p>
+</section>
+
+</main>
+
+<footer class="pied">
+  <div class="cadre">
+    <p>Créé par Roméo St-Cyr — Saint-Jean-sur-Richelieu, Québec.</p>
+  </div>
+</footer>
+
+<script>
+// Affiche une seule section à la fois, selon l'adresse (#rb2, #rombot, etc.).
+// Sans JavaScript, toutes les sections restent visibles l'une sous l'autre.
+(function () {
+  var vues = document.querySelectorAll('.vue');
+  var liens = document.querySelectorAll('.menu a');
+  function afficher() {
+    var nom = (location.hash || '#accueil').slice(1);
+    if (!document.getElementById(nom)) { nom = 'accueil'; }
+    for (var i = 0; i < vues.length; i++) {
+      vues[i].hidden = (vues[i].id !== nom);
+    }
+    for (var j = 0; j < liens.length; j++) {
+      if (liens[j].getAttribute('href') === '#' + nom) {
+        liens[j].setAttribute('aria-current', 'page');
+      } else {
+        liens[j].removeAttribute('aria-current');
+      }
+    }
+    window.scrollTo(0, 0);
+  }
+  window.addEventListener('hashchange', afficher);
+  afficher();
+})();
+</script>
+</body>
+</html>
